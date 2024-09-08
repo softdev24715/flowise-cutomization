@@ -7,20 +7,20 @@
   --chatbot-container-bg-color: transparent;
   --chatbot-container-font-family: 'Open Sans';
 
-  --chatbot-button-bg-color: #ffffff;
-  --chatbot-button-color: #ffffff;
+  --chatbot-button-bg-color: #ffffff !important;
+  --chatbot-button-color: #ffffff !important; 
 
-  --chatbot-host-bubble-bg-color: #f7f8ff;
+  --chatbot-host-bubble-bg-color: #f7f8ff !important;
   --chatbot-host-bubble-color: #303235;
 
-  --chatbot-guest-bubble-bg-color: #3b81f6;
-  --chatbot-guest-bubble-color: #ffffff;
+  --chatbot-guest-bubble-bg-color: #f8f8f8 ;
+  --chatbot-guest-bubble-color: #ffffff !important;
 
-  --chatbot-input-bg-color: #ffffff;
+  --chatbot-input-bg-color: #ffffff !important;
   --chatbot-input-color: #303235;
   --chatbot-input-placeholder-color: #9095a0;
 
-  --chatbot-header-bg-color: #ffffff;
+  --chatbot-header-bg-color: #ffffff !important;
   --chatbot-header-color: #303235;
 
   --chatbot-border-radius: 6px;
@@ -83,7 +83,7 @@ pre {
 }
 
 .bubble-typing {
-  transition:
+  transition: 
     width 400ms ease-out,
     height 400ms ease-out;
 }
@@ -238,7 +238,7 @@ textarea {
 }
 
 .chatbot-chat-view {
-  max-width: 800px;
+  max-width: 800px; 
 }
 
 .ping span {
@@ -327,7 +327,7 @@ textarea {
 
 .usermessagewaiting-light {
   padding: 1rem 1.5rem 1rem 1.5rem;
-  background: linear-gradient(to left, #ede7f6, #e3f2fd, #ede7f6);
+  background: linear-gradient(to left, #ede7f6, #000, #000)!important;
   background-size: 200% 200%;
   background-position: -100% 0;
   animation: loading-gradient 2s ease-in-out infinite;
@@ -438,19 +438,19 @@ textarea {
 }
 @media (max-width: 640px) {
   div[part='bot'] {
-    width: 100% !important;
+    width: 80% !important;
     position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
+    top: 20px !important;
+    left: 20px !important;
     max-width: unset !important;
     max-height: unset !important;
-    height: 100% !important;
+    height: 80% !important;
     overflow: auto; 
     overflow-x: hidden; /* Prevent horizontal scrolling */
   }
 
     div[part='button'], div[class='flex flex-row items-center w-full h-[50px] absolute top-0 left-0 z-10'], .chatbot-container, .rounded-lg {
-    border-radius: 20px !important;
+    border-radius: 100px !important;
   }
 
 button {

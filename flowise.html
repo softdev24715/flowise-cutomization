@@ -8,7 +8,7 @@
   <body>
     <h1>This is a Heading</h1>
     <script type="module">
-      import Chatbot from 'https://cdn.jsdelivr.net/npm/chat-embed/dist/web.js';
+      import Chatbot from './dist/web.js';
       Chatbot.init({
         chatflowid: 'ef98a8fc-0fd6-41eb-b091-9a530d27add2',
         apiHost: 'http://localhost:3000',
@@ -64,12 +64,12 @@
             feedback: {
               color: '#303235',
             },
-            footer: {
-              textColor: '#303235',
-              text: 'Powered by',
-              company: 'OpenWidget',
-              companyLink: '#',
-            },
+            // footer: {
+            //   textColor: '#303235',
+            //   text: 'Powered by',
+            //   company: 'flowise',
+            //   companyLink: 'https://new-digital-intelligen',
+            // },
           },
         },
       });
