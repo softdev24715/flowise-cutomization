@@ -440,8 +440,8 @@ textarea {
   div[part='bot'] {
     width: 100% !important;
     position: fixed !important;
-    bottom: 10px !important;
-    right:10px !important;
+    bottom: 0 !important;
+    right:0 !important;
     max-width: unset !important;
     max-height: unset !important;
     height: 100% !important;
