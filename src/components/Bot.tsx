@@ -1065,7 +1065,10 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
     <>
       <div
         ref={botContainer}
-        class={'relative flex w-full h-full text-base overflow-hidden bg-cover bg-center flex-col items-center chatbot-container rounded-2xl ' + props.class}
+        class={
+          'relative flex w-full h-full text-base overflow-hidden bg-cover bg-center flex-col items-center chatbot-container rounded-2xl ' +
+          props.class
+        }
         onDragEnter={handleDrag}
       >
         {isDragActive() && (
@@ -1101,7 +1104,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
           <div
             class="flex flex-row items-center w-full h-[50px] absolute top-0 left-0 z-10"
             style={{
-              background:"#3C4DAB",
+              background: '#3C4DAB',
               color: props.bubbleTextColor,
               'border-top-left-radius': props.isFullPage ? '0px' : '16px',
               'border-top-right-radius': props.isFullPage ? '0px' : '16px',
@@ -1109,7 +1112,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
           >
             <Show when={props.titleAvatarSrc}>
               <>
-                <div style={{ width: '15px' }} />
+                <div style={{ width: '25%' }} />
                 <Avatar initialAvatarSrc={props.titleAvatarSrc} />
               </>
             </Show>
