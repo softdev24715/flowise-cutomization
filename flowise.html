@@ -10,66 +10,92 @@
     <script type="module">
       import Chatbot from './dist/web.js';
       Chatbot.init({
-        chatflowid: 'ef98a8fc-0fd6-41eb-b091-9a530d27add2',
-        apiHost: 'http://localhost:3000',
+        chatflowid: '370f4e24-2471-4a48-88cf-f9585ea8a844',
+        apiHost: 'https://flowises-wxzq.onrender.com',
+        chatflowConfig: {
+          // topK: 2
+        },
+        observersConfig: {
+          // (optional) Allows you to execute code in parent based upon signal observations within the chatbot.
+          // The userinput field submitted to bot ("" when reset by bot)
+          observeUserInput: (userInput) => {
+            console.log({ userInput });
+          },
+          // The bot message stack has changed
+          observeMessages: (messages) => {
+            console.log({ messages });
+          },
+          // The bot loading signal changed
+          observeLoading: (loading) => {
+            console.log({ loading });
+          },
+        },
         theme: {
           button: {
             backgroundColor: '#3B81F6',
             right: 20,
             bottom: 20,
-            size: 48,
+            size: 50, // small | medium | large | number
             dragAndDrop: true,
             iconColor: 'white',
-            customIconSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
+            customIconSrc: 'E:/button_1.gif',
+            autoWindowOpen: {
+              autoOpen: true, //parameter to control automatic window opening
+              openDelay: 2, // Optional parameter for delay time in seconds
+              autoOpenOnMobile: false, //parameter to control automatic window opening in mobile
+            },
           },
           tooltip: {
+            showTooltip: true,
+            tooltipMessage: 'Hi There 👋!',
             tooltipBackgroundColor: 'black',
             tooltipTextColor: 'white',
             tooltipFontSize: 16,
           },
           chatWindow: {
             showTitle: true,
-            title: 'AssurdealGPT',
-            titleAvatarSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
             showAgentMessages: false,
-            welcomeMessage: "Bonjour! Comment puis-je vous aider aujourd'hui?",
-            errorMessage: 'Une erreur est survenue. Veuillez réessayer.',
-            backgroundColor: '#F8F8F8', // Light gray background
-            width: 400,
+            title: 'Assurdeal Bot',
+            titleAvatarSrc: 'https://cdn.files-text.com/api/ow/img/integrations/openai/orb.gif',
+            welcomeMessage: 'Hello! This is custom welcome message',
+            errorMessage: 'This is a custom error message',
+            backgroundColor: '#ffffff',
+            backgroundImage: 'enter image path or link', // If set, this will overlap the background color of the chat window.
             fontSize: 16,
-            poweredByTextColor: '#303235',
+            starterPromptFontSize: 15,
+            clearChatOnReload: true, // If set to true, the chat will be cleared when the page reloads.
             botMessage: {
-              backgroundColor: '#ffffff', // White background for bot messages
-              textColor: '#000000', // Black text color
+              backgroundColor: '#f7f8ff',
+              textColor: '#303235',
               showAvatar: true,
               avatarSrc: 'https://cdn.files-text.com/api/ow/img/integrations/openai/orb.gif',
             },
             userMessage: {
-              backgroundColor: '#3B81F6', // Blue background for user messages
-              textColor: '#ffffff', // White text color
-              showAvatar: false,
+              backgroundColor: '#3B81F6',
+              textColor: '#ffffff',
+              showAvatar: true,
               avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png',
             },
             textInput: {
-              placeholder: 'Écrivez un message...',
+              placeholder: 'Type your question',
               backgroundColor: '#ffffff',
               textColor: '#303235',
-              sendButtonColor: '#B3B3B3',
+              sendButtonColor: '#3C4DAB',
               maxChars: 500,
-              maxCharsWarningMessage: 'Vous avez dépassé la limite de caractères.',
-              autoFocus: true,
+              maxCharsWarningMessage: 'You exceeded the characters limit. Please input less than 50 characters.',
+              autoFocus: true, // If not used, autofocus is disabled on mobile and enabled on desktop. true enables it on both, false disables it on both.
               sendMessageSound: true,
               receiveMessageSound: true,
             },
             feedback: {
               color: '#303235',
             },
-            // footer: {
-            //   textColor: '#303235',
-            //   text: 'Powered by',
-            //   company: 'flowise',
-            //   companyLink: 'https://new-digital-intelligen',
-            // },
+            footer: {
+              textColor: '#303235',
+              text: 'Powered by',
+              company: 'NDI',
+              companyLink: 'https://new-digital-intelligence.com',
+            },
           },
         },
       });

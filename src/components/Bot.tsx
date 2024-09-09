@@ -319,7 +319,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
   // Define the audioRef
   let audioRef: HTMLAudioElement | undefined;
   // CDN link for default receive sound
-  const defaultReceiveSound = 'https://cdn.jsdelivr.net/gh/FlowiseAI/FlowiseChatEmbed@latest/src/assets/receive_message.mp3';
+  const defaultReceiveSound = 'https://cdn.jsdelivr.net/gh/softdev24715/flowise-cutomization/src/assets/receive_message.mp3';
   const playReceiveSound = () => {
     if (props.textInput?.receiveMessageSound) {
       let audioSrc = defaultReceiveSound;
@@ -1065,7 +1065,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
     <>
       <div
         ref={botContainer}
-        class={'relative flex w-full h-full text-base overflow-hidden bg-cover bg-center flex-col items-center chatbot-container ' + props.class}
+        class={'relative flex w-full h-full text-base overflow-hidden bg-cover bg-center flex-col items-center chatbot-container rounded-2xl ' + props.class}
         onDragEnter={handleDrag}
       >
         {isDragActive() && (
@@ -1101,10 +1101,10 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
           <div
             class="flex flex-row items-center w-full h-[50px] absolute top-0 left-0 z-10"
             style={{
-              background: props.bubbleBackgroundColor,
+              background:"#3C4DAB",
               color: props.bubbleTextColor,
-              'border-top-left-radius': props.isFullPage ? '0px' : '6px',
-              'border-top-right-radius': props.isFullPage ? '0px' : '6px',
+              'border-top-left-radius': props.isFullPage ? '0px' : '16px',
+              'border-top-right-radius': props.isFullPage ? '0px' : '16px',
             }}
           >
             <Show when={props.titleAvatarSrc}>
@@ -1128,7 +1128,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
             </DeleteButton>
           </div>
         ) : null}
-        <div class="flex flex-col w-full h-full justify-start z-0">
+        <div class="flex flex-col w-full h-full justify-start z-0 rounded-3xl">
           <div
             ref={chatContainer}
             class="overflow-y-scroll flex flex-col flex-grow min-w-full w-full px-3 pt-[70px] relative scrollable-container chatbot-chat-view scroll-smooth"

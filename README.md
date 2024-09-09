@@ -130,7 +130,7 @@ You can also customize chatbot with different configuration
         errorMessage: 'This is a custom error message',
         backgroundColor: '#ffffff',
         backgroundImage: 'enter image path or link', // If set, this will overlap the background color of the chat window.
-        height: 700,
+        height: 600,
         width: 400,
         fontSize: 16,
         starterPrompts: ['What is a bot?', 'Who are you?'], // It overrides the starter prompts set by the chat flow passed

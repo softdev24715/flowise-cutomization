@@ -7,20 +7,20 @@
   --chatbot-container-bg-color: transparent;
   --chatbot-container-font-family: 'Open Sans';
 
-  --chatbot-button-bg-color: #ffffff !important;
-  --chatbot-button-color: #ffffff !important; 
+  --chatbot-button-bg-color: #0042da;
+  --chatbot-button-color: #ffffff;
 
-  --chatbot-host-bubble-bg-color: #f7f8ff !important;
+  --chatbot-host-bubble-bg-color: #F8F8F8;
   --chatbot-host-bubble-color: #303235;
 
-  --chatbot-guest-bubble-bg-color: #f8f8f8 ;
-  --chatbot-guest-bubble-color: #ffffff !important;
+  --chatbot-guest-bubble-bg-color: #3b81f6;
+  --chatbot-guest-bubble-color: #ffffff;
 
-  --chatbot-input-bg-color: #ffffff !important;
+  --chatbot-input-bg-color: #F8F8F8;
   --chatbot-input-color: #303235;
   --chatbot-input-placeholder-color: #9095a0;
 
-  --chatbot-header-bg-color: #ffffff !important;
+  --chatbot-header-bg-color: #F8F8F8;
   --chatbot-header-color: #303235;
 
   --chatbot-border-radius: 6px;
@@ -83,7 +83,7 @@ pre {
 }
 
 .bubble-typing {
-  transition: 
+  transition:
     width 400ms ease-out,
     height 400ms ease-out;
 }
@@ -186,8 +186,8 @@ textarea {
 
 .chatbot-button {
   color: var(--chatbot-button-color);
-  background-color: red;
-  border: 1px solid red;
+  background-color: #0042da;
+  border: 1px solid #0042da;
   border-radius: var(--chatbot-border-radius);
 }
 
@@ -238,7 +238,7 @@ textarea {
 }
 
 .chatbot-chat-view {
-  max-width: 800px; 
+  max-width: 800px;
 }
 
 .ping span {
@@ -327,7 +327,7 @@ textarea {
 
 .usermessagewaiting-light {
   padding: 1rem 1.5rem 1rem 1.5rem;
-  background: linear-gradient(to left, #ede7f6, #000, #000)!important;
+  background: linear-gradient(to left, #ede7f6, #e3f2fd, #ede7f6);
   background-size: 200% 200%;
   background-position: -100% 0;
   animation: loading-gradient 2s ease-in-out infinite;
@@ -347,7 +347,7 @@ textarea {
 }
 
 @keyframes loading-gradient {
-  90% {
+  0% {
     background-position: -100% 0;
   }
   100% {
@@ -422,8 +422,8 @@ textarea {
 
 .cloud {
   width: 400px;
-  height: calc(100% - 50px);
-  border-radius: 0.5rem;
+  height: calc(100%);
+  border-radius: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -440,17 +440,17 @@ textarea {
   div[part='bot'] {
     width: 80% !important;
     position: fixed !important;
-    top: 20px !important;
-    left: 20px !important;
+    bottom: 10px !important;
+    right:10px !important;
     max-width: unset !important;
     max-height: unset !important;
-    height: 80% !important;
+    height: 90% !important;
     overflow: auto; 
     overflow-x: hidden; /* Prevent horizontal scrolling */
   }
 
     div[part='button'], div[class='flex flex-row items-center w-full h-[50px] absolute top-0 left-0 z-10'], .chatbot-container, .rounded-lg {
-    border-radius: 100px !important;
+    border-radius: 16px 16px 0 0 !important;
   }
 
 button {
