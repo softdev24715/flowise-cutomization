@@ -448,7 +448,6 @@ textarea {
     overflow: auto; 
     overflow-x: hidden; /* Prevent horizontal scrolling */
   }
-
     div[part='button'], div[class='flex flex-row items-center w-full h-[50px] absolute top-0 left-0 z-10'], .chatbot-container, .rounded-lg {
     border-radius: 16px 16px 0 0 !important;
   }
