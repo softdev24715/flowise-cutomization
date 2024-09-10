@@ -36,7 +36,7 @@ export const TextInput = (props: Props) => {
   const [inputValue, setInputValue] = createSignal(props.defaultValue ?? '');
   const [isSendButtonDisabled, setIsSendButtonDisabled] = createSignal(false);
   const [warningMessage, setWarningMessage] = createSignal('');
-  const [isfocus, setIsfocus] = createSignal("")
+  const [isfocus, setIsfocus] = createSignal('');
   let inputRef: HTMLInputElement | HTMLTextAreaElement | undefined;
   let fileUploadRef: HTMLInputElement | HTMLTextAreaElement | undefined;
   let imgUploadRef: HTMLInputElement | HTMLTextAreaElement | undefined;
@@ -117,13 +117,14 @@ export const TextInput = (props: Props) => {
 
   return (
     <div
-      class={`w-full h-auto max-h-[192px] min-h-[56px] flex flex-col items-end justify-between chatbot-input border border-[#eeeeee] ${isfocus() ? 'outline-1 ' : ''}`}
+      class={`w-full h-auto max-h-[192px] min-h-[56px] flex flex-col items-end justify-between chatbot-input border border-[#eeeeee] ${
+        isfocus() ? 'outline-1 ' : ''
+      }`}
       data-testid="input"
       style={{
         margin: 'auto',
         'background-color': props.backgroundColor ?? defaultBackgroundColor,
         color: props.textColor ?? defaultTextColor,
-      
       }}
       onKeyDown={submitWhenEnter}
     >

@@ -220,7 +220,7 @@ export const BotBubble = (props: Props) => {
     <div>
       <div class="flex flex-row justify-start mb-2 items-start host-container" style={{ 'margin-right': '50px' }}>
         <Show when={props.showAvatar}>
-          <Avatar initialAvatarSrc={props.avatarSrc} width='w-5' height ="h-5" />
+          <Avatar initialAvatarSrc={props.avatarSrc} width="w-5" height="h-5" />
         </Show>
         <div class="flex flex-col justify-start">
           {props.showAgentMessages && props.message.agentReasoning && (
