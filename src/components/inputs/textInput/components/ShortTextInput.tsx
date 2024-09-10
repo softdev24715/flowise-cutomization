@@ -6,6 +6,7 @@ type ShortTextInputProps = {
   onInput: (value: string) => void;
   fontSize?: number;
   disabled?: boolean;
+  onChangeFocus?:(isfocused: boolean) => void;
 } & Omit<JSX.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onInput'>;
 
 const DEFAULT_HEIGHT = 56;
@@ -38,7 +39,17 @@ export const ShortTextInput = (props: ShortTextInputProps) => {
       handleInput(e);
     }
   };
+  const handleFocus = () => {
+    if (props.onChangeFocus) {
+      props.onChangeFocus(true); // Call onChangeFocus with true
+    }
+  };
 
+  const handleBlur = () => {
+    if (props.onChangeFocus) {
+      props.onChangeFocus(false); // Call onChangeFocus with false
+    }
+  };
   return (
     <textarea
       ref={props.ref}
@@ -49,6 +60,8 @@ export const ShortTextInput = (props: ShortTextInputProps) => {
         resize: 'none',
         height: `${props.value !== '' ? height() : DEFAULT_HEIGHT}px`,
       }}
+      onFocus={handleFocus} 
+      onBlur={handleBlur} 
       onInput={handleInput}
       onKeyDown={handleKeyDown}
       {...others}

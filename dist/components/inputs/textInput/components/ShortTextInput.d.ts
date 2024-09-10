@@ -4,6 +4,7 @@ type ShortTextInputProps = {
     onInput: (value: string) => void;
     fontSize?: number;
     disabled?: boolean;
+    onChangeFocus?: (isfocused: boolean) => void;
 } & Omit<JSX.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onInput'>;
 export declare const ShortTextInput: (props: ShortTextInputProps) => JSX.Element;
 export {};

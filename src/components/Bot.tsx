@@ -330,7 +330,6 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
       audioRef.play();
     }
   };
-
   let hasSoundPlayed = false;
   // TODO: this has the bug where first message is not showing: https://github.com/FlowiseAI/FlowiseChatEmbed/issues/158
   // The solution is to use SSE

@@ -36,12 +36,11 @@ export const TextInput = (props: Props) => {
   const [inputValue, setInputValue] = createSignal(props.defaultValue ?? '');
   const [isSendButtonDisabled, setIsSendButtonDisabled] = createSignal(false);
   const [warningMessage, setWarningMessage] = createSignal('');
-  const [isfocus, setIsfocus] = createSignal('');
+  const [isfocus, setIsfocus] = createSignal(true);
   let inputRef: HTMLInputElement | HTMLTextAreaElement | undefined;
   let fileUploadRef: HTMLInputElement | HTMLTextAreaElement | undefined;
   let imgUploadRef: HTMLInputElement | HTMLTextAreaElement | undefined;
   let audioRef: HTMLAudioElement | undefined;
-
   const handleInput = (inputValue: string) => {
     const wordCount = inputValue.length;
 
@@ -57,6 +56,9 @@ export const TextInput = (props: Props) => {
   };
 
   const checkIfInputIsValid = () => warningMessage() === '' && inputRef?.reportValidity();
+  const changeIsFocus =(value:boolean)=>{
+    setIsfocus(value)
+  }
 
   const submit = () => {
     if (checkIfInputIsValid()) {
@@ -118,7 +120,7 @@ export const TextInput = (props: Props) => {
   return (
     <div
       class={`w-full h-auto max-h-[192px] min-h-[56px] flex flex-col items-end justify-between chatbot-input border border-[#eeeeee] ${
-        isfocus() ? 'outline-1 ' : ''
+        isfocus() ? 'outline outline-offset-0 outline-1 outline-blue-800' : ''
       }`}
       data-testid="input"
       style={{
@@ -184,6 +186,7 @@ export const TextInput = (props: Props) => {
           ref={inputRef as HTMLTextAreaElement}
           onInput={handleInput}
           value={inputValue()}
+          onChangeFocus={changeIsFocus}
           fontSize={props.fontSize}
           disabled={props.disabled}
           placeholder={props.placeholder ?? 'Type your question'}
