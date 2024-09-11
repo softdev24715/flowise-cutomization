@@ -112,10 +112,7 @@ export const Bubble = (props: BubbleProps) => {
                 title="Close Chat"
               >
                 <svg viewBox="0 0 24 24" width="24" height="24">
-                  <path
-                    fill={bubbleProps.theme?.button?.iconColor ?? defaultIconColor}
-                    d="M12 16l-6-6h12l-6 6z"
-                  />
+                  <path fill={bubbleProps.theme?.button?.iconColor ?? defaultIconColor} d="M12 16l-6-6h12l-6 6z" />
                 </svg>
               </button>
             </Show>
