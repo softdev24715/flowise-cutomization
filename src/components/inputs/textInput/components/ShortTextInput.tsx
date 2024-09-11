@@ -24,7 +24,7 @@ export const ShortTextInput = (props: ShortTextInputProps) => {
       } else {
         setHeight(e.currentTarget.scrollHeight - 24);
       }
-      e.currentTarget.scrollTo(0, e.currentTarget.scrollHeight);
+      // e.currentTarget.scrollTo(0, e.currentTarget.scrollHeight);
       local.onInput(e.currentTarget.value);
     }
   };

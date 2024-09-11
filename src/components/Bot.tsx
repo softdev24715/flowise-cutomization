@@ -317,7 +317,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
   };
 
   // Define the audioRef
-  let audioRef: HTMLAudioElement | undefined; 
+  let audioRef: HTMLAudioElement | undefined;
   // CDN link for default receive sound
   const defaultReceiveSound = 'https://cdn.jsdelivr.net/gh/softdev24715/flowise-cutomization/src/assets/tone.mp3';
   const playReceiveSound = () => {
