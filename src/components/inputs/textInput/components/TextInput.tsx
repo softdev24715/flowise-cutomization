@@ -30,7 +30,7 @@ type Props = {
 const defaultBackgroundColor = '#ffffff';
 const defaultTextColor = '#303235';
 // CDN link for default send sound
-const defaultSendSound = 'https://cdn.jsdelivr.net/gh/softdev24715/flowise-cutomization/src/assets/custom_send.mp3';
+const defaultSendSound = 'https://cdn.jsdelivr.net/gh/softdev24715/flowise-cutomization/src/assets/tone.mp3';
 
 export const TextInput = (props: Props) => {
   const [inputValue, setInputValue] = createSignal(props.defaultValue ?? '');
@@ -56,9 +56,9 @@ export const TextInput = (props: Props) => {
   };
 
   const checkIfInputIsValid = () => warningMessage() === '' && inputRef?.reportValidity();
-  const changeIsFocus =(value:boolean)=>{
-    setIsfocus(value)
-  }
+  const changeIsFocus = (value: boolean) => {
+    setIsfocus(value);
+  };
 
   const submit = () => {
     if (checkIfInputIsValid()) {
