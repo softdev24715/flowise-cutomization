@@ -114,7 +114,7 @@ export const Bubble = (props: BubbleProps) => {
                 <svg viewBox="0 0 24 24" width="24" height="24">
                   <path
                     fill={bubbleProps.theme?.button?.iconColor ?? defaultIconColor}
-                    d="M24.1818182,11 C24.6336875,11 25,11.4477153 25,12 C25,12.5522847 24.6336875,13 24.1818182,13 L7.81818182,13 C7.36631248,13 7,12.5522847 7,12 C7,11.4477153 7.36631248,11 7.81818182,11 L24.1818182,11 Z"
+                    d="M12 16l-6-6h12l-6 6z"
                   />
                 </svg>
               </button>
