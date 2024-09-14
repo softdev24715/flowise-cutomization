@@ -1065,7 +1065,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
       <div
         ref={botContainer}
         class={
-          'relative flex w-full h-full text-base overflow-hidden bg-cover bg-center flex-col items-center chatbot-container rounded-2xl ' +
+          'relative flex w-full h-full text-sm overflow-hidden bg-cover bg-center flex-col items-center chatbot-container rounded-2xl ' +
           props.class
         }
         onDragEnter={handleDrag}
@@ -1116,7 +1116,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
               </>
             </Show>
             <Show when={props.title}>
-              <span class="px-3 whitespace-pre-wrap font-semibold max-w-full">{props.title}</span>
+              <span class="px-3 whitespace-pre-wrap font-semibold max-w-full text-lg">{props.title}</span>
             </Show>
             <div style={{ flex: 1 }} />
             <DeleteButton
@@ -1133,7 +1133,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
         <div class="flex flex-col w-full h-full justify-start z-0 rounded-3xl">
           <div
             ref={chatContainer}
-            class="overflow-y-scroll flex flex-col flex-grow min-w-full w-full px-3 pt-[70px] relative scrollable-container chatbot-chat-view scroll-smooth"
+            class="overflow-y-scroll flex flex-col flex-grow min-w-full w-full px-3 pt-[70px] relative chatbot-chat-view scroll-smooth"
           >
             <For each={[...messages()]}>
               {(message, index) => {
@@ -1234,6 +1234,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
               </div>
             </Show>
           </Show>
+
           <Show when={previews().length > 0}>
             <div class="w-full flex items-center justify-start gap-2 px-5 pt-2 border-t border-[#eeeeee]">
               <For each={[...previews()]}>{(item) => <>{previewDisplay(item)}</>}</For>
@@ -1245,7 +1246,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
                 {recordingNotSupported() ? (
                   <div class="w-full flex items-center justify-between p-4 border border-[#eeeeee]">
                     <div class="w-full flex items-center justify-between gap-3">
-                      <span class="text-base">To record audio, use modern browsers like Chrome or Firefox that support audio recording.</span>
+                      <span class="text-sm">To record audio, use modern browsers like Chrome or Firefox that support audio recording.</span>
                       <button
                         class="py-2 px-4 justify-center flex items-center bg-red-500 text-white rounded-md"
                         type="button"

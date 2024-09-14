@@ -1,8 +1,35 @@
 @tailwind base;
+
+/* Firefox-specific scrollbar styling */
+/* For Chrome, Safari, and other WebKit browsers */
+*::-webkit-scrollbar {
+  width: 8px; /* Adjust the width of the scrollbar */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary); /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Optional: roundness of the scrollbar thumb */
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary); /* Color of the scrollbar track */
+}
+/*  */
+
+/* Hide scrollbar arrows in webkit-based browsers */
+*::-webkit-scrollbar-button {
+  display: none !important;
+}
+
 @tailwind components;
 @tailwind utilities;
 
 :host {
+  --primary: #fff !important;
+  --secondary: #404EAE !important;
+    overflow-x: hidden !important; 
+  --scrollbar-thumb-bg: var(--secondary) !important;
+  --scrollbar-track-bg: var(--primary) !important;
   --chatbot-container-bg-image: none;
   --chatbot-container-bg-color: transparent;
   --chatbot-container-font-family: 'Open Sans';
@@ -421,7 +448,6 @@ textarea {
 }
 
 .cloud {
-  width: 400px;
   height: calc(100%);
   border-radius: 1rem;
   display: flex;
@@ -442,11 +468,9 @@ textarea {
     position: fixed !important;
     bottom: 0 !important;
     right:0 !important;
-    max-width: unset !important;
-    max-height: unset !important;
     height: 100% !important;
     overflow: auto; 
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden !important; /* Prevent horizontal scrolling */
   }
     div[part='button'], div[class='flex flex-row items-center w-full h-[50px] absolute top-0 left-0 z-10'], .chatbot-container, .rounded-2xl {
     border-radius: 16px 16px 0 0 !important;

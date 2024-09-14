@@ -20,7 +20,7 @@ export const Avatar = (props: { initialAvatarSrc?: string; width?: string; heigh
           isMobile() ? 'text-sm' : 'text-xl'
         }`}
       >
-        <img src={avatarSrc()} alt="Bot avatar" class="rounded-full object-cover w-full h-full" />
+        <img src={avatarSrc()} alt="Bot avatar" class="object-cover w-full h-full" />
       </figure>
     </Show>
   );

@@ -10,55 +10,64 @@ type ShortTextInputProps = {
 } & Omit<JSX.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onInput'>;
 
 const DEFAULT_HEIGHT = 56;
+const LINE_HEIGHT = 24; // Approximate line height in pixels
 
 export const ShortTextInput = (props: ShortTextInputProps) => {
   const [local, others] = splitProps(props, ['ref', 'onInput']);
-  const [height, setHeight] = createSignal(56);
+  const [height, setHeight] = createSignal(DEFAULT_HEIGHT);
+  const [overflowY, setOverflowY] = createSignal<'hidden' | 'auto'>('hidden');
 
-  // @ts-expect-error: unknown type
-  const handleInput = (e) => {
+  const handleInput = (e: InputEvent) => {
+    const target = e.currentTarget as HTMLTextAreaElement;
     if (props.ref) {
-      if (e.currentTarget.value === '') {
-        // reset height when value is empty
+      const currentHeight = target.scrollHeight;
+      const lineCount = Math.floor(currentHeight / LINE_HEIGHT);
+
+      if (target.value === '') {
         setHeight(DEFAULT_HEIGHT);
+        setOverflowY('hidden');
       } else {
-        setHeight(e.currentTarget.scrollHeight - 24);
+        setHeight(currentHeight - 24);
+        setOverflowY(lineCount > 3 ? 'auto' : 'hidden');
       }
-      // e.currentTarget.scrollTo(0, e.currentTarget.scrollHeight);
-      local.onInput(e.currentTarget.value);
+
+      local.onInput(target.value);
     }
   };
 
-  // @ts-expect-error: unknown type
-  const handleKeyDown = (e) => {
-    // Handle Shift + Enter new line
-    if (e.keyCode == 13 && e.shiftKey) {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    const target = e.currentTarget as HTMLTextAreaElement;
+    if (e.key === 'Enter' && e.shiftKey) {
       e.preventDefault();
       e.stopPropagation();
-      e.currentTarget.value += '\n';
-      handleInput(e);
+      target.value += '\n';
+      handleInput(e as unknown as InputEvent);
     }
   };
+
   const handleFocus = () => {
     if (props.onChangeFocus) {
-      props.onChangeFocus(true); // Call onChangeFocus with true
+      props.onChangeFocus(true);
     }
   };
 
   const handleBlur = () => {
     if (props.onChangeFocus) {
-      props.onChangeFocus(false); // Call onChangeFocus with false
+      props.onChangeFocus(false);
     }
   };
+
   return (
     <textarea
       ref={props.ref}
-      class="focus:outline-none bg-transparent px-4 py-4 flex-1 w-full h-full min-h-[56px] max-h-[128px] text-input disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100 "
+      class="focus:outline-none bg-transparent px-4 py-4 flex-1 w-full h-full min-h-[56px] max-h-[128px] text-input disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100"
       disabled={props.disabled}
       style={{
         'font-size': props.fontSize ? `${props.fontSize}px` : '16px',
         resize: 'none',
         height: `${props.value !== '' ? height() : DEFAULT_HEIGHT}px`,
+        'overflow-y': overflowY(),
+        'overflow-x': 'hidden', // Prevent horizontal scrolling
       }}
       onFocus={handleFocus}
       onBlur={handleBlur}
