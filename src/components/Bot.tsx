@@ -1297,7 +1297,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
                 sendButtonColor={props.textInput?.sendButtonColor}
                 maxChars={props.textInput?.maxChars}
                 maxCharsWarningMessage={props.textInput?.maxCharsWarningMessage}
-                autoFocus={props.textInput?.autoFocus}
+                autoFocus={false}
                 fontSize={props.fontSize}
                 disabled={getInputDisabled()}
                 defaultValue={userInput()}

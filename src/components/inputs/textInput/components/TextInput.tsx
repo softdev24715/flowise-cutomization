@@ -86,13 +86,13 @@ export const TextInput = (props: Props) => {
   createEffect(() => {
     const shouldAutoFocus = props.autoFocus !== undefined ? props.autoFocus : !isMobile() && window.innerWidth > 640;
 
-    // if (!props.disabled && shouldAutoFocus && inputRef) inputRef.focus();
+    if (!props.disabled && shouldAutoFocus && inputRef) inputRef.focus();
   });
 
   onMount(() => {
     const shouldAutoFocus = props.autoFocus !== undefined ? props.autoFocus : !isMobile() && window.innerWidth > 640;
 
-    // if (!props.disabled && shouldAutoFocus && inputRef) inputRef.focus();
+    if (!props.disabled && shouldAutoFocus && inputRef) inputRef.focus();
 
     if (props.sendMessageSound) {
       if (props.sendSoundLocation) {
