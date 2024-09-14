@@ -1065,8 +1065,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
       <div
         ref={botContainer}
         class={
-          'relative flex w-full h-full text-sm overflow-hidden bg-cover bg-center flex-col items-center chatbot-container rounded-2xl ' +
-          props.class
+          'relative flex w-full h-full text-sm overflow-hidden bg-cover bg-center flex-col items-center chatbot-container rounded-2xl ' + props.class
         }
         onDragEnter={handleDrag}
       >

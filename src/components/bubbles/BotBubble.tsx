@@ -25,8 +25,8 @@ type Props = {
   isLoading: boolean;
   showAgentMessages?: boolean;
   handleActionClick: (label: string, action: IAction | undefined | null) => void;
-  width?:string;
-  height?:string;
+  width?: string;
+  height?: string;
 };
 
 const defaultBackgroundColor = '#f7f8ff';
