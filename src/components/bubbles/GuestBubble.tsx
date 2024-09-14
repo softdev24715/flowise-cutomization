@@ -83,7 +83,7 @@ export const GuestBubble = (props: Props) => {
           <span
             ref={userMessageEl}
             class="mr-2 whitespace-pre-wrap break-normal"
-            style={{ 'font-size': props.fontSize ? `${props.fontSize}px` : `${defaultFontSize}px`, "overflow-wrap":"anywhere" }}
+            style={{ 'font-size': props.fontSize ? `${props.fontSize}px` : `${defaultFontSize}px`, 'overflow-wrap': 'anywhere' }}
           />
         )}
       </div>
