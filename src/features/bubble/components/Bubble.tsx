@@ -97,7 +97,7 @@ export const Bubble = (props: BubbleProps) => {
           right: `16px`,
         }}
         class={
-          `fixed sm:right-5 rounded-2xl w-full sm:w-[420px] max-h-[90%]` +
+          `fixed sm:right-5 rounded-2xl w-full sm:w-[420px] max-h-[100%]` +
           (isBotOpened() ? ' opacity-1' : ' opacity-0 pointer-events-none') +
           ` bottom-${chatWindowBottom}px`
         }
