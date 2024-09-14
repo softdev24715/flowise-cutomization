@@ -19,7 +19,7 @@ export const Full = (props: FullProps, { element }: { element: HTMLElement }) =>
     // Set viewport meta tag dynamically
     const viewportMeta = document.querySelector('meta[name="viewport"]');
     if (viewportMeta) {
-      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, interactive-widget=resizes-content');
+      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0');
     }
   };
 
