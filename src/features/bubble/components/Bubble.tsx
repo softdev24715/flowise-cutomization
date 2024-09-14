@@ -46,7 +46,7 @@ export const Bubble = (props: BubbleProps) => {
   createEffect(() => {
     const meta = document.createElement('meta');
     meta.name = 'viewport';
-    meta.content = 'width=device-width, initial-scale=1.0 resizes-visual';
+    meta.content = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, interactive-widget=resizes-visual";
     document.head.appendChild(meta);
 
     return () => {
