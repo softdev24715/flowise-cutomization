@@ -343,21 +343,44 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
     resultText: string,
   ) => {
     setMessages((data) => {
+      // Check if there are any messages
+      if (data.length === 0) {
+        const newMessage: MessageType = {
+          message: text,
+          messageId,
+          sourceDocuments,
+          fileAnnotations,
+          agentReasoning,
+          action,
+          type: 'apiMessage' as messageType
+        };
+        return [newMessage];
+      }
+
+      // Update existing message by appending new text
       const updated = data.map((item, i) => {
         if (i === data.length - 1) {
           if (resultText && !hasSoundPlayed) {
             playReceiveSound();
             hasSoundPlayed = true;
           }
-          return { ...item, message: item.message + text, messageId, sourceDocuments, fileAnnotations, agentReasoning, action };
+          return {
+            ...item,
+            message: item.message + text, // Append new text to existing message
+            messageId,
+            sourceDocuments,
+            fileAnnotations,
+            agentReasoning,
+            action
+          };
         }
         return item;
       });
+
       addChatMessage(updated);
-      return [...updated];
+      return updated;
     });
 
-    // Set hasSoundPlayed to false if resultText exists
     if (resultText) {
       hasSoundPlayed = false;
     }
@@ -449,8 +472,16 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
 
     clearPreviews();
 
+    // Add user message
     setMessages((prevMessages) => {
-      const messages: MessageType[] = [...prevMessages, { message: value, type: 'userMessage', fileUploads: uploads }];
+      const messages: MessageType[] = [
+        ...prevMessages,
+        {
+          message: value,
+          type: 'userMessage' as messageType,
+          fileUploads: uploads
+        }
+      ];
       addChatMessage(messages);
       return messages;
     });
@@ -460,18 +491,28 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
       chatId: chatId(),
     };
 
-    if (uploads && uploads.length > 0) body.uploads = uploads;
-
     if (props.chatflowConfig) body.overrideConfig = props.chatflowConfig;
 
     if (leadEmail()) body.leadEmail = leadEmail();
 
     if (action) body.action = action;
 
+    // Only add empty message if streaming is available
     if (isChatFlowAvailableToStream()) {
       body.socketIOClientId = socketIOClientId();
-    } else {
-      setMessages((prevMessages) => [...prevMessages, { message: '', type: 'apiMessage' }]);
+      // For streaming, add empty message that will be updated
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          message: '',
+          type: 'apiMessage' as messageType,
+          messageId: '',
+          sourceDocuments: undefined,
+          fileAnnotations: undefined,
+          agentReasoning: [],
+          action: null
+        }
+      ]);
     }
 
     if (uploadedFiles().length > 0) {
@@ -506,53 +547,28 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
 
     if (result.data) {
       const data = result.data;
-      const question = data.question;
-      if (value === '' && question) {
-        setMessages((data) => {
-          const messages = data.map((item, i) => {
-            if (i === data.length - 2) {
-              return { ...item, message: question };
-            }
-            return item;
-          });
-          addChatMessage(messages);
-          return [...messages];
-        });
-      }
-      if (uploads && uploads.length > 0) {
-        setMessages((data) => {
-          const messages = data.map((item, i) => {
-            if (i === data.length - 2) {
-              if (item.fileUploads) {
-                const fileUploads = item?.fileUploads.map((file) => ({
-                  type: file.type,
-                  name: file.name,
-                  mime: file.mime,
-                }));
-                return { ...item, fileUploads };
-              }
-            }
-            return item;
-          });
-          addChatMessage(messages);
-          return [...messages];
-        });
-      }
-      if (!isChatFlowAvailableToStream()) {
-        let text = '';
-        if (data.text) text = data.text;
-        else if (data.json) text = JSON.stringify(data.json, null, 2);
-        else text = JSON.stringify(data, null, 2);
 
-        updateLastMessage(text, data?.chatMessageId, data?.sourceDocuments, data?.fileAnnotations, data?.agentReasoning, data?.action, data.text);
-      } else {
-        updateLastMessage('', data?.chatMessageId, data?.sourceDocuments, data?.fileAnnotations, data?.agentReasoning, data?.action, data.text);
+      // Handle non-streaming response
+      if (!data.isStreamValid) {
+        setMessages((prevMessages) => {
+          // Remove any empty messages first
+          const filteredMessages = prevMessages.filter(msg => msg.message !== '');
+          return [
+            ...filteredMessages,
+            {
+              message: data.text,
+              type: 'apiMessage' as messageType,
+              messageId: data.chatMessageId,
+              sourceDocuments: data.sourceDocuments,
+              fileAnnotations: data.fileAnnotations,
+              agentReasoning: data.agentReasoning || [],
+              action: data.action || null
+            }
+          ];
+        });
       }
-      setLoading(false);
-      setUserInput('');
-      setUploadedFiles([]);
-      scrollToBottom();
     }
+
     if (result.error) {
       const error = result.error;
       console.error(error);
@@ -567,6 +583,10 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
       handleError();
       return;
     }
+
+    setLoading(false);
+    setUserInput('');
+    scrollToBottom();
   };
 
   const handleActionClick = async (label: string, action: IAction | undefined | null) => {
@@ -653,19 +673,19 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
       const loadedMessages: MessageType[] =
         chatMessage?.chatHistory?.length > 0
           ? chatMessage.chatHistory?.map((message: MessageType) => {
-              const chatHistory: MessageType = {
-                messageId: message?.messageId,
-                message: message.message,
-                type: message.type,
-                rating: message.rating,
-              };
-              if (message.sourceDocuments) chatHistory.sourceDocuments = message.sourceDocuments;
-              if (message.fileAnnotations) chatHistory.fileAnnotations = message.fileAnnotations;
-              if (message.fileUploads) chatHistory.fileUploads = message.fileUploads;
-              if (message.agentReasoning) chatHistory.agentReasoning = message.agentReasoning;
-              if (message.action) chatHistory.action = message.action;
-              return chatHistory;
-            })
+            const chatHistory: MessageType = {
+              messageId: message?.messageId,
+              message: message.message,
+              type: message.type,
+              rating: message.rating,
+            };
+            if (message.sourceDocuments) chatHistory.sourceDocuments = message.sourceDocuments;
+            if (message.fileAnnotations) chatHistory.fileAnnotations = message.fileAnnotations;
+            if (message.fileUploads) chatHistory.fileUploads = message.fileUploads;
+            if (message.agentReasoning) chatHistory.agentReasoning = message.agentReasoning;
+            if (message.action) chatHistory.action = message.action;
+            return chatHistory;
+          })
           : [{ message: props.welcomeMessage ?? defaultWelcomeMessage, type: 'apiMessage' }];
 
       const filteredMessages = loadedMessages.filter((message) => message.message !== '' && message.type !== 'leadCaptureMessage');
@@ -1323,3 +1343,4 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
     </>
   );
 };
+
