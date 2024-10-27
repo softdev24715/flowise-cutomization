@@ -352,7 +352,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
           fileAnnotations,
           agentReasoning,
           action,
-          type: 'apiMessage' as messageType
+          type: 'apiMessage' as messageType,
         };
         return [newMessage];
       }
@@ -371,7 +371,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
             sourceDocuments,
             fileAnnotations,
             agentReasoning,
-            action
+            action,
           };
         }
         return item;
@@ -479,8 +479,8 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
         {
           message: value,
           type: 'userMessage' as messageType,
-          fileUploads: uploads
-        }
+          fileUploads: uploads,
+        },
       ];
       addChatMessage(messages);
       return messages;
@@ -510,8 +510,8 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
           sourceDocuments: undefined,
           fileAnnotations: undefined,
           agentReasoning: [],
-          action: null
-        }
+          action: null,
+        },
       ]);
     }
 
@@ -552,7 +552,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
       if (!data.isStreamValid) {
         setMessages((prevMessages) => {
           // Remove any empty messages first
-          const filteredMessages = prevMessages.filter(msg => msg.message !== '');
+          const filteredMessages = prevMessages.filter((msg) => msg.message !== '');
           return [
             ...filteredMessages,
             {
@@ -562,8 +562,8 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
               sourceDocuments: data.sourceDocuments,
               fileAnnotations: data.fileAnnotations,
               agentReasoning: data.agentReasoning || [],
-              action: data.action || null
-            }
+              action: data.action || null,
+            },
           ];
         });
       }
@@ -1343,4 +1343,3 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
     </>
   );
 };
-
