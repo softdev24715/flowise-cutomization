@@ -21,7 +21,7 @@ export const chatbotConfig = {
     },
     tooltip: {
       showTooltip: true,
-      tooltipMessage: 'Commen puis-je vous aider?',
+      tooltipMessage: 'Comment puis-je vous aider ?',
       tooltipBackgroundColor: 'purple',
       tooltipTextColor: 'white',
       tooltipFontSize: 14,
