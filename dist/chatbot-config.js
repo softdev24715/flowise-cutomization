@@ -12,7 +12,7 @@ export const chatbotConfig = {
       size: 55,
       dragAndDrop: true,
       iconColor: 'white',
-      customIconSrc: 'https://cdn.jsdelivr.net/gh/softdev24715/flowise-cutomization/src/icon/button.gif',
+      customIconSrc: './src/icon/button.gif',
       autoWindowOpen: {
         autoOpen: false,
         openDelay: 2,
