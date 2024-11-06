@@ -25,21 +25,21 @@ const Tooltip = (props: TooltipProps) => {
   const formattedTooltipMessage =
     tooltipMessage.length > 20
       ? tooltipMessage
-          .split(' ')
-          .reduce<string[][]>(
-            (acc, curr) => {
-              const last = acc[acc.length - 1];
-              if (last && last.join(' ').length + curr.length <= 20) {
-                last.push(curr);
-              } else {
-                acc.push([curr]);
-              }
-              return acc;
-            },
-            [[]],
-          )
-          .map((arr) => arr.join(' '))
-          .join('\n')
+        .split(' ')
+        .reduce<string[][]>(
+          (acc, curr) => {
+            const last = acc[acc.length - 1];
+            if (last && last.join(' ').length + curr.length <= 20) {
+              last.push(curr);
+            } else {
+              acc.push([curr]);
+            }
+            return acc;
+          },
+          [[]],
+        )
+        .map((arr) => arr.join(' '))
+        .join('\n')
       : tooltipMessage;
 
   return (
@@ -52,6 +52,7 @@ const Tooltip = (props: TooltipProps) => {
           '--tooltip-background-color': backgroundColor,
           '--tooltip-text-color': textColor,
           '--tooltip-font-size': fontSize,
+          'opacity': 0.9,
         }}
       >
         {formattedTooltipMessage}

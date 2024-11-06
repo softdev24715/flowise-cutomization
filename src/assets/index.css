@@ -3,17 +3,22 @@
 /* Firefox-specific scrollbar styling */
 /* For Chrome, Safari, and other WebKit browsers */
 *::-webkit-scrollbar {
-  width: 8px; /* Adjust the width of the scrollbar */
+  width: 8px;
+  /* Adjust the width of the scrollbar */
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--secondary); /* Color of the scrollbar thumb */
-  border-radius: 10px; /* Optional: roundness of the scrollbar thumb */
+  background-color: var(--secondary);
+  /* Color of the scrollbar thumb */
+  border-radius: 10px;
+  /* Optional: roundness of the scrollbar thumb */
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--primary); /* Color of the scrollbar track */
+  background: var(--primary);
+  /* Color of the scrollbar track */
 }
+
 /*  */
 
 /* Hide scrollbar arrows in webkit-based browsers */
@@ -27,7 +32,7 @@
 :host {
   --primary: #fff !important;
   --secondary: #404EAE !important;
-    overflow-x: hidden !important; 
+  overflow-x: hidden !important;
   --scrollbar-thumb-bg: var(--secondary) !important;
   --scrollbar-track-bg: var(--primary) !important;
   --chatbot-container-bg-image: none;
@@ -72,24 +77,34 @@ pre {
   margin: 5px;
   width: auto;
   overflow: auto;
-  white-space: pre-wrap; /* css-3 */
-  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
-  white-space: -pre-wrap; /* Opera 4-6 */
-  white-space: -o-pre-wrap; /* Opera 7 */
-  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  white-space: pre-wrap;
+  /* css-3 */
+  white-space: -moz-pre-wrap;
+  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;
+  /* Opera 4-6 */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  word-wrap: break-word;
+  /* Internet Explorer 5.5+ */
 }
+
 .string {
   color: green;
 }
+
 .number {
   color: darkorange;
 }
+
 .boolean {
   color: blue;
 }
+
 .null {
   color: magenta;
 }
+
 .key {
   color: rgb(0, 43, 54);
 }
@@ -101,8 +116,10 @@ pre {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .scrollable-container {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .text-fade-in {
@@ -140,9 +157,11 @@ pre {
   0% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-5px);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -158,7 +177,7 @@ textarea {
   text-decoration: underline;
 }
 
-.slate-html-container > div {
+.slate-html-container>div {
   min-height: 24px;
 }
 
@@ -178,10 +197,12 @@ textarea {
   color: #9095a0 !important;
   opacity: 1 !important;
 }
+
 .text-input::-moz-placeholder {
   color: #9095a0 !important;
   opacity: 1 !important;
 }
+
 .text-input::placeholder {
   color: #9095a0 !important;
   opacity: 1 !important;
@@ -229,7 +250,7 @@ textarea {
   background-color: #f7f8ff;
 }
 
-.chatbot-host-bubble > .bubble-typing {
+.chatbot-host-bubble>.bubble-typing {
   background-color: #f7f8ff;
   border: var(--chatbot-host-bubble-border);
   border-radius: 6px;
@@ -259,7 +280,7 @@ textarea {
   color: #303235;
 }
 
-.chatbot-button > .send-icon {
+.chatbot-button>.send-icon {
   fill: var(--chatbot-button-color);
   stroke: var(--chatbot-button-color);
 }
@@ -377,6 +398,7 @@ textarea {
   0% {
     background-position: -100% 0;
   }
+
   100% {
     background-position: 100% 0;
   }
@@ -391,6 +413,7 @@ textarea {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -462,25 +485,32 @@ textarea {
   padding: 10px 10px;
   font-family: 'Poppins', sans-serif;
 }
+
 @media (max-width: 640px) {
   div[part='bot'] {
     width: 100% !important;
     position: fixed !important;
     bottom: 0 !important;
-    right:0 !important;
+    right: 0 !important;
     height: 100% !important;
-    overflow: auto; 
-    overflow-x: hidden !important; /* Prevent horizontal scrolling */
+    overflow: auto;
+    overflow-x: hidden !important;
+    /* Prevent horizontal scrolling */
   }
-    div[part='button'], div[class='flex flex-row items-center w-full h-[50px] absolute top-0 left-0 z-10'], .chatbot-container, .rounded-2xl {
+
+  div[part='button'],
+  div[class='flex flex-row items-center w-full h-[50px] absolute top-0 left-0 z-10'],
+  .chatbot-container,
+  .rounded-2xl {
     border-radius: 16px 16px 0 0 !important;
   }
 
-button {
-  cursor: default !important;
-}
+  button {
+    cursor: default !important;
+  }
 
 }
+
 .tooltip {
   position: fixed;
   background: var(--tooltip-background-color, black);
@@ -488,7 +518,7 @@ button {
   padding: 5px 10px;
   border-radius: 5px;
   z-index: 42424242;
-  white-space: pre-wrap;
+  /* white-space: pre-wrap; */
   word-break: break-word;
   max-width: calc(100vw - 20px);
   font-size: var(--tooltip-font-size, 12px);
